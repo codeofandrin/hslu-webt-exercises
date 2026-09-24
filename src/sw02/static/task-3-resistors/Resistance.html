@@ -1,0 +1,39 @@
+﻿<html>
+
+<head>
+  <meta charset="utf8" />
+  <title>Übung 3: Gesamtwiderstandsberechnung</title>
+  <script>
+    function calculateResistance(r1, r2, wiring) {
+      let result
+      if (wiring.toLowerCase() === "parallel") {
+        result = r1 * r2 / (r1 + r2)
+      }
+      else if (wiring.toLowerCase() === "serial") {
+        result = r1 + r2
+      }
+      else {
+        return alert("'wiring' must be one of ['parallel', 'serial']")
+      }
+
+      return result
+    }
+  </script>
+</head>
+
+<body>
+  <p>Die Ausgabe erfolgt im Console-Log: F12</p>
+  <script>
+    let result = calculateResistance(100, 100, "SERIAL")
+    console.log(result)   // expected: 200
+
+    let result2 = calculateResistance(100, 100, "PARALLEL")
+    console.log(result2)   // expected: 50
+
+    let error = calculateResistance(100, 100, "adsasd")
+    console.log(error)   // expected: undefined
+
+  </script>
+</body>
+
+</html>
