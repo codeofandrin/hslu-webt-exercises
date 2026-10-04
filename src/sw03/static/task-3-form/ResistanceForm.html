@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+  <title>Übung 3: Gesamtwiderstandsberechnung</title>
+</head>
+
+<body>
+  <h2>Berechnung Gesamtwiderstand</h2>
+  <form>
+    <fieldset>
+      <legend><strong>Widerstände</strong></legend>
+      <label for="r1">R1:</label>
+      <br>
+      <input type="number" id="r1" min="0" required>
+      <br>
+
+      <label for="r2">R2:</label>
+      <br>
+      <input type="number" id="r2" min="0" required>
+    </fieldset>
+
+    <fieldset>
+      <legend><strong>Schaltung</strong></legend>
+      <label for="serial">Seriell:</label>
+      <br>
+      <input type="radio" name="circuit" id="serial" required>
+      <br>
+
+      <label for="parallel">Parallel:</label>
+      <br>
+      <input type="radio" name="circuit" id="parallel" required>
+      <br>
+    </fieldset>
+
+    <fieldset>
+      <legend><strong>Berechnen</strong></legend>
+      <button>Berechne Gesamtwiderstand</button>
+    </fieldset>
+
+    <fieldset>
+      <legend><strong>Ausgabe</strong></legend>
+      <span>Hier wäre der Output</span>
+    </fieldset>
+  </form>
+
+</body>
+
+</html>
