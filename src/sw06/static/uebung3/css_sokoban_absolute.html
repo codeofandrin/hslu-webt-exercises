@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Soko-Ban</title>
+  <style>
+    .parent {
+      background-image: url(css_sokoban.png);
+      background-size: cover;
+      width: 700px;
+      height: 600px;
+    }
+
+    .child {
+      background: rgb(68, 114, 196);
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      top: 208px;
+
+    }
+
+    #c1 {
+      left: 408px;
+    }
+
+    #c2 {
+      left: 108px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="parent">
+    <div id="c1" class="child"></div>
+    <div id="c2" class="child"></div>
+  </div>
+</body>
+
+</html>
