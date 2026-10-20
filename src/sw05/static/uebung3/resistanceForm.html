@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+  <title>Übung 3: Gesamtwiderstandsberechnung</title>
+  <script>
+    function calculateResistance(r1, r2, wiring) {
+      let result
+      if (wiring.toLowerCase() === "parallel") {
+        result = r1 * r2 / (r1 + r2)
+      }
+      else if (wiring.toLowerCase() === "serial") {
+        result = r1 + r2
+      }
+      else {
+        return alert("'wiring' must be one of ['parallel', 'serial']")
+      }
+
+      return result
+    }
+
+    function calculate() {
+      let r1Value = document.getElementById("r1").value
+      let r2Value = document.getElementById("r2").value
+      let serialChecked = document.getElementById("serial").checked
+
+      let totalRes = calculateResistance(Number(r1Value), Number(r2Value), serialChecked ? "serial" : "parallel")
+
+      document.getElementById("output").innerText = totalRes
+    }
+
+    function validateR1() {
+      if (!document.getElementById("r1").checkValidity()) {
+        document.getElementById('errorR1').innerText = "Ungültiger Wert"
+      }
+    }
+
+    function validateR2() {
+      if (!document.getElementById("r2").checkValidity()) {
+        document.getElementById('errorR2').innerText = "Ungültiger Wert"
+      }
+    }
+
+    function validateWiring() {
+      if (!document.getElementById("serial").checked && !document.getElementById("parallel").checked) {
+        document.getElementById('errorWiring').innerText = "Diese Angabe ist Pflicht";
+      }
+    }
+
+    function clearValidationErrors() {
+      document.getElementById('errorR1').innerText = '';
+      document.getElementById('errorR2').innerText = '';
+      document.getElementById('errorWiring').innerText = '';
+    }
+
+    function hasValidationErrors() {
+      return document.getElementById('errorR1').innerText != ''
+        || document.getElementById('errorR2').innerText != ''
+        || document.getElementById('errorWiring').innerText != '';
+    }
+
+    function validateAndCalculate() {
+      clearValidationErrors();
+
+      validateR1()
+      validateR2()
+      validateWiring()
+
+      if (!hasValidationErrors()) {
+        calculate();
+      }
+    }
+  </script>
+
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <h2>Berechnung Gesamtwiderstand</h2>
+  <main>
+    <fieldset>
+      <legend><strong>Widerstände</strong></legend>
+      <label for="r1">R1:</label>
+      <br>
+      <input id="r1" type="number" min="0" required>
+      <br>
+      <p id="errorR1" class="error"></p>
+      <label for="r2">R2:</label>
+      <br>
+      <input id="r2" type="number" min="0" required>
+      <p id="errorR2" class="error"></p>
+    </fieldset>
+    <fieldset>
+      <legend><strong>Schaltung</strong></legend>
+      <label for="serial">Seriell:</label><br>
+      <input id="serial" type="radio" name="wiring" value="serial">
+      <br>
+      <label for="parallel">Parallel:</label><br>
+      <input id="parallel" type="radio" name="wiring" value="parallel">
+      <p id="errorWiring" class="error"></p>
+    </fieldset>
+
+    <fieldset>
+      <legend><strong>Berechnung</strong></legend>
+      <p>Gesamtwiderstand: <span id="output"></span></p>
+
+    </fieldset>
+    <fieldset>
+      <legend><strong>Berechnen</strong></legend>
+      <button type="button" onclick="validateAndCalculate()">Berechne Gesamtwiderstand</button>
+    </fieldset>
+  </main>
+</body>
+
+</html>
