@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Übung 2: Zufallszahl: Integration in Backend</title>
+  <meta charset="utf8">
+  <style>
+    .red {
+      color: red;
+    }
+
+    .green {
+      color: green;
+    }
+  </style>
+
+  <script>
+    async function showRandomNumber(min, max) {
+      try {
+        const resp = await fetch("/backend_random", { signal: AbortSignal.timeout(5000) })
+        if (resp.ok) {
+          const raw = await resp.text()
+          const data = JSON.parse(raw)
+
+          updateDocument(data)
+        } else {
+          throw `code ${resp.status}`
+        }
+      } catch (err) {
+        alert(`fetching failed: ${err}`)
+      }
+    }
+
+    function updateDocument(response) {
+      let random = document.getElementById('random');
+      random.innerText = response.random;
+      if (response.color == 'green') {
+        random.classList.remove('red');
+        random.classList.add('green');
+      } else {
+        random.classList.remove('green');
+        random.classList.add('red');
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <p id="random">bisher noch keine Zufallszahl vorliegend.</p>
+  <button onclick="showRandomNumber(1, 100)">Berechne Zufallszahl</button>
+</body>
+
+</html>
