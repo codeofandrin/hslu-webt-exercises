@@ -1,0 +1,3 @@
+# Ignore the complete content of this directory to not accidently commit a database to a git repo, except this file.
+*
+!.gitignore
