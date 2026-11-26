@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf8">
+  <title>Übung 1: Hello Vue!</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+</head>
+
+<body>
+  <main id="app">
+    <div id="msg">
+      <button v-on:click="message='Hello Vue!'">Show greetings</button>
+      <p>{{ message }}</p>
+    </div>
+  </main>
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          message: "Hello World"
+        }
+      }
+    }).mount("#msg")
+  </script>
+</body>
+
+</html>
